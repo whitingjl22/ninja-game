@@ -1,50 +1,49 @@
 <html>
+  <body>
+    <div id="background">
+      <div
+        id="character"
+        style='position:absolute; top:100; left:450; background-image: url("img/down1.png"); width:59px; height:86px;'
+      ></div>
+    </div>
+    <script type="text/javascript">
+      let leftValue = 450
+      let topValue = 100
+      let walkValue = 1
+      let direction = "down"
 
-<body>
-	<div id='background'>
-		<div id='character'
-			style='position:absolute; top:100; left:450; background-image: url("img/down1.png"); width:59px; height:86px;'>
-		</div>
-	</div>
-	<script type="text/javascript">
-		let leftValue = 450;
-		let topValue = 100;
-		let walkValue = 1;
-		let direction = 'down';
+      function update() {
+        if (walkValue == 1) {
+          walkValue = 2
+        } else {
+          walkValue = 1
+        }
+        document.getElementById("character").style.left = leftValue + "px"
+        document.getElementById("character").style.top = topValue + "px"
+        document.getElementById("character").style.backgroundImage = "url('img/" + direction + walkValue + ".png')"
+      }
 
-		function update() {
-			if (walkValue == 1) {
-				walkValue = 2;
-			}
-			else {
-				walkValue = 1;
-			}
-			document.getElementById("character").style.left = leftValue + "px";
-			document.getElementById("character").style.top = topValue + "px";
-			document.getElementById("character").style.backgroundImage = "url('img/" + direction + walkValue + ".png')";
-		}
-
-		document.onkeydown = function (event) {
-			console.log(event);
-			if (event.keyCode == 37 && leftValue > 0) { // LEFT
-				leftValue = leftValue - 10;
-				direction = 'left';
-			}
-			else if (event.keyCode == 39 && leftValue < 800) { // RIGHT
-				leftValue = leftValue + 10;
-				direction = 'right';
-			}
-			else if (event.keyCode == 40 && topValue < 800) { // DOWN
-				topValue = topValue + 10;
-				direction = 'down';
-			}
-			else if (event.keyCode == 38 && topValue > 0) { // UP
-				topValue = topValue - 10;
-				direction = 'top';
-			}
-			update();
-		}
-	</script>
-</body>
-
+      document.onkeydown = function(event) {
+        console.log(`EVENT: ${event}`)
+        if (event.keyCode == 37 && leftValue > 0) {
+          // LEFT
+          leftValue = leftValue - 10
+          direction = "left"
+        } else if (event.keyCode == 39 && leftValue < 800) {
+          // RIGHT
+          leftValue = leftValue + 10
+          direction = "right"
+        } else if (event.keyCode == 40 && topValue < 800) {
+          // DOWN
+          topValue = topValue + 10
+          direction = "down"
+        } else if (event.keyCode == 38 && topValue > 0) {
+          // UP
+          topValue = topValue - 10
+          direction = "top"
+        }
+        update()
+      }
+    </script>
+  </body>
 </html>
